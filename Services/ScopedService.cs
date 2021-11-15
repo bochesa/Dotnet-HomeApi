@@ -3,9 +3,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using TodoApi.Models;
+using HomeApi.Models;
 
-namespace TodoApi.Services
+namespace HomeApi.Services
 {
 
     internal interface IScopedProcessingService

@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
-using TodoApi.Models;
+using HomeApi.Models;
 
-namespace TodoApi.Services
+namespace HomeApi.Services
 {
 
     public class ConsumeScopedServiceHostedService : BackgroundService

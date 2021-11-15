@@ -12,10 +12,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using TodoApi.Models;
-using TodoApi.Services;
+using HomeApi.Models;
+using HomeApi.Services;
 
-namespace TodoApi
+namespace HomeApi
 {
     public class Startup
     {
@@ -32,7 +32,7 @@ namespace TodoApi
             services.AddControllers();
             // services.AddSwaggerGen(c =>
             // {
-            //     c.SwaggerDoc("v1", new OpenApiInfo { Title = "TodoApi", Version = "v1" });
+            //     c.SwaggerDoc("v1", new OpenApiInfo { Title = "HomeApi", Version = "v1" });
             // });
             services.AddDbContext<TodoContext>(options =>
                 options.UseInMemoryDatabase("TodoList"));
@@ -48,7 +48,7 @@ namespace TodoApi
             {
                 app.UseDeveloperExceptionPage();
                 // app.UseSwagger();
-                // app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TodoApi v1"));
+                // app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HomeApi v1"));
             }
 
             app.UseHttpsRedirection();
