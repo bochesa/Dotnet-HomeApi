@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using TodoApi.Models;
+using TodoApi.Services;
 
 namespace TodoApi
 {
@@ -28,7 +29,6 @@ namespace TodoApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             // services.AddSwaggerGen(c =>
             // {
@@ -36,6 +36,8 @@ namespace TodoApi
             // });
             services.AddDbContext<TodoContext>(options =>
                 options.UseInMemoryDatabase("TodoList"));
+            services.AddHostedService<ConsumeScopedServiceHostedService>();
+            services.AddScoped<IScopedProcessingService, ScopedProcessingService>();
 
         }
 
