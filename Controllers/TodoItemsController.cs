@@ -9,13 +9,13 @@ using HomeApi.Models;
 
 namespace HomeApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class TodoItemsController : ControllerBase
     {
-        private readonly TodoContext _context;
+        private readonly HomeContext _context;
 
-        public TodoItemsController(TodoContext context)
+        public TodoItemsController(HomeContext context)
         {
             _context = context;
         }

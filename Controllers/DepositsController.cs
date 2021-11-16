@@ -9,13 +9,13 @@ using HomeApi.Models;
 
 namespace HomeApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class DepositsController : ControllerBase
     {
-        private readonly TodoContext _context;
+        private readonly HomeContext _context;
 
-        public DepositsController(TodoContext context)
+        public DepositsController(HomeContext context)
         {
             _context = context;
         }
@@ -29,7 +29,7 @@ namespace HomeApi.Controllers
 
         // GET: api/deposits/Total
         // outputs the total amount accumulated on the account.
-        [HttpGet("/api/[controller]/total")]
+        [HttpGet("/[controller]/total")]
         public async Task<IActionResult> GetTotal()
         {
             double total = 0;
