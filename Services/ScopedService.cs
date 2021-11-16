@@ -17,9 +17,9 @@ namespace HomeApi.Services
     {
         private int executionCount = 0;
         private readonly ILogger _logger;
-        private readonly TodoContext _context;
+        private readonly HomeContext _context;
 
-        public ScopedProcessingService(ILogger<ScopedProcessingService> logger, TodoContext context)
+        public ScopedProcessingService(ILogger<ScopedProcessingService> logger, HomeContext context)
         {
             _logger = logger;
             _context = context;

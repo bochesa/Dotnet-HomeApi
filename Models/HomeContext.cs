@@ -2,12 +2,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HomeApi.Models
 {
-    public class TodoContext : DbContext
+    public class HomeContext : DbContext
     {
-        public TodoContext() { }
-        public TodoContext(DbContextOptions<TodoContext> options) : base(options)
+        public HomeContext(DbContextOptions<HomeContext> options) : base(options)
         {
-
+            Database.EnsureCreated();
         }
 
         public DbSet<TodoItem> TodoItems { get; set; }
