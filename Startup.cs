@@ -30,12 +30,16 @@ namespace HomeApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            // services.AddSwaggerGen(c =>
-            // {
-            //     c.SwaggerDoc("v1", new OpenApiInfo { Title = "HomeApi", Version = "v1" });
-            // });
-            services.AddDbContext<TodoContext>(options =>
-                options.UseInMemoryDatabase("TodoList"));
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "HomeApi", Version = "v1" });
+            });
+            services.AddDbContext<HomeContext>(options =>
+            {
+                // options.UseInMemoryDatabase("TodoList"));
+                var connectionsString = Configuration.GetConnectionString("DBConnectionString");
+                options.UseSqlServer(connectionsString);
+            });
             services.AddHostedService<ConsumeScopedServiceHostedService>();
             services.AddScoped<IScopedProcessingService, ScopedProcessingService>();
 
@@ -47,8 +51,8 @@ namespace HomeApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                // app.UseSwagger();
-                // app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HomeApi v1"));
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HomeApi v1"));
             }
 
             app.UseHttpsRedirection();
