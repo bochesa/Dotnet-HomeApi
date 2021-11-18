@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using HomeApi.Models;
 using HomeApi.Services;
+using Microsoft.IdentityModel.Tokens;
 
 namespace HomeApi
 {
@@ -38,10 +39,22 @@ namespace HomeApi
             {
                 // options.UseInMemoryDatabase("TodoList"));
                 var connectionsString = Configuration.GetConnectionString("DBConnectionString");
-                options.UseSqlServer(connectionsString);
+                var connectionsStringDevelopment = Configuration.GetConnectionString("DevelopmentDBConnectionString");
+                options.UseSqlServer(connectionsStringDevelopment);
             });
             services.AddHostedService<ConsumeScopedServiceHostedService>();
             services.AddScoped<IScopedProcessingService, ScopedProcessingService>();
+
+            services.AddAuthentication("Bearer")
+            .AddJwtBearer("Bearer", options =>
+            {
+                options.Authority = "https://localhost:5001";
+
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateAudience = false
+                };
+            });
 
         }
 
@@ -59,6 +72,7 @@ namespace HomeApi
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
